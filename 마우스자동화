@@ -1,0 +1,51 @@
+
+from time import time
+import pyautogui
+import time
+
+# 화면크기 출력
+# print(pyautogui.size())
+
+# 마우스 위치 출력
+# time.sleep(2)
+# print(pyautogui.position())
+
+# 마우스 이동
+# 한번에 이동
+# pyautogui.moveTo(1973,15,2)
+# pyautogui.click()
+# pyautogui.doubleClick()
+pyautogui.moveTo(2659,48,1)
+pyautogui.dragTo(2512,45,1)
+
+pyautogui.mouseInfo()
+
+import pyautogui
+import pyperclip
+
+#키보드 입력(문자)
+# pyautogui.write("stratcoding", interval=0.25)
+
+#키보드 입력(키)
+# pyautogui.press('enter')
+# pyautogui.press('up')
+# pyautogui.press('up')
+# pyautogui.press('up')
+
+# 키보드 동시입력
+# pyautogui.hotkey('ctrl', 'a')
+# pyautogui.hotkey('ctrl', 'c')
+# pyautogui.hotkey('ctrl', 'v')
+
+# 한글입력 방법
+pyperclip.copy("스타드코팅")
+pyautogui.hotkey('ctrl', 'v')
+
+# 스타드코팅스타드코팅
+# 메세지 박스
+c= pyautogui.prompt("몇 페이지까지?")
+print("입력값:", c)
+print(type(c))
+
+
+
