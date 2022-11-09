@@ -1,0 +1,38 @@
+import requests
+from bs4 import BeautifulSoup
+import pyautogui
+from html_table_parser import parser_functions as parser
+import pandas as pd
+
+PROXY ={
+   'http': 'http://11.88.8.250:8080',
+   'https': 'http://11.88.8.250:8080' 
+}
+
+# keyword= pyautogui.prompt("검색어를 입력하세요:")
+# page = int(pyautogui.prompt("검색 페이지수를 입력하세요:"))
+
+codes =['005930', '000660', '035720']
+for code in codes:
+    URL = f'http://www.cgs.or.kr/business/esg_tab04.jsp?pg=1&pp=1000&skey=&svalue=&sfyear=2018&styear=2019&sgtype=&sgrade=#ui_contents'
+
+    response = requests.get(URL, proxies=PROXY ) #  verify=False
+    html = response.text
+    soup = BeautifulSoup(html, 'html.parser')
+    """
+    # soup.select_one() # 하나만 지정
+    # soup.select()   # 리스트 형태로 가져 옮
+    # result = soup.select_one("dt > a") # 하나만 지정
+    # print(" a:", result.text)
+    price =soup.select_one("#_nowVal").text
+    name = soup.select_one('#middle > div.h_company > div.wrap_company > h2 > a').text
+    price = price.replace(',', '')
+    print(f'{name} : {price}원')
+
+    http://www.cgs.or.kr/business/esg_tab04.jsp?pg=2&pp=10&skey=&svalue=&sfyear=2020&styear=2021&sgtype=&sgrade=#ui_contents
+    """
+    data = soup.find("table")
+    table = parser.make2d(data)
+    df = pd.DataFrame(table)
+
+    print(df)
